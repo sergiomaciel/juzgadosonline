@@ -1,0 +1,29 @@
+- Crear Proyecto
+   -pipenv (no olvidar punto)
+   django-admin startproject #NOMBRE_PROYECYO .
+
+- Crear app
+   python manage.py startapp #NOMBRE_DE_LA_APP   
+
+- Crear Base de datos
+python manage.py makemigrations
+python manage.py migrate
+
+- Crear SuperUser
+   python manage.py createsuperuser
+
+- Crear tablas de los Modelos (PREPARA LOS CAMBIOS)
+python manage.py makemigrations #NOMBRE_DEL_MODELO
+
+- Ejecuta los cambios (PLASMA LOS CAMBIOS)
+python manage.py migrate #NOMBRE_DEL_MODELO
+
+- Iniciar Entorno Virtual
+   - Con pipemv
+   pipenv shell
+
+   - Forma normal
+   #NOMBRE ENTORNO#\Scripts\activate
+
+- Iniciar Servidor
+python manage.py runserver
