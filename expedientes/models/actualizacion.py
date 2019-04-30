@@ -5,7 +5,7 @@ from .expediente import Expediente
 
 class Actualizacion(models.Model):
    expediente = models.ForeignKey(Expediente, null=True, on_delete=models.CASCADE)
-   contenido = models.TextField( null=True)
+   contenido = models.TextField(null=True)
    fecha_creado = models.DateTimeField(default=timezone.now)
    fecha_publicado = models.DateTimeField(blank=True, null=True)
    autor = models.ForeignKey('auth.User', on_delete=models.CASCADE)
