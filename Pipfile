@@ -11,10 +11,14 @@ server = "python manage.py runserver"
 [dev-packages]
 pytz = "*"
 pylint = "*"
+pylint-django = "*"
 
 [packages]
 django = "==2.2"
 mysqlclient = "*"
+beautifulsoup4 = "==4.7.1"
+requests = "*"
+
 
 [requires]
 python_version = "3.7"
