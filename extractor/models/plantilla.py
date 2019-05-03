@@ -15,7 +15,7 @@ class TipoCaratula(models.Model):
 
 class Plantilla(models.Model):   
    nombre = models.CharField(max_length=50, null=False)
-   tipos_de_caratulas = models.ManyToManyField(TipoCaratula, related_name = 'tipos_de_caratulas')
+   tipos_de_caratulas = models.ForeignKey(TipoCaratula, null=True, on_delete=models.CASCADE)
    encabezado = models.TextField(null=True)
    separador =  models.CharField(max_length=100, null=True)
    demo = models.TextField(null=True)

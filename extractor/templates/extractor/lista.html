@@ -4,15 +4,21 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Document</title>
+   <title>LISTAR EXPEDIENTES</title>
 </head>
 <body>
 
    {% for espediente in expedientes %}
+   
+   <p>Numero: {{espediente.numero}}</p>
+   <p>Actor: {{espediente.actor}}</p>
+   <p>Demandado: {{espediente.demandado}}</p>
+   <p>Causa: {{espediente.causa}}</p>
+   <article>{{espediente.contenido}}</article>
    <br>
-   {{ espediente}}
    <br>
-   <h1>SEPARADOR DE PLATILLA!!!!!!</h1>
+   <br>
+
    {% endfor %}
 </body>
 </html>

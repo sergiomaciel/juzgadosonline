@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>BUSCAR DESPACHOS</title>
+</head>
+<body>
+   <h3>JUZGADO: {{data.juzgado}} </h3>
+   <h3>Activo: {{data.activo}} </h3>
+   <h3>Ultima Actualización: {{data.ultima_fecha}} </h3>
+   <h3>URL Demo: {{data.url}}</h3>
+   {% for despacho in despachos %}   
+      <p>Fecha: {{despacho.fecha}}</p>
+   {% endfor %}
+</body>
+</html>

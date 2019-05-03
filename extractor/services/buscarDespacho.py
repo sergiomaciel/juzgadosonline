@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from extractor.models import Despacho
 
 
 class BuscarDespachos():
@@ -9,7 +8,9 @@ class BuscarDespachos():
       self.despachos = []
       self.nombre_archivo = ""
       self.url_juzgado = ""      
+      
       self.generarUrl(url)
+      self.listar(url)
 
    #Con url demo genera la url de juzgado y el archivo
    def generarUrl(self, url):
@@ -17,8 +18,9 @@ class BuscarDespachos():
       nombre = Vurl.pop()
       self.url_juzgado = url.replace(nombre, "")
       self.nombre_archivo = nombre[:-14]
+      return self.url_juzgado
 
-   def lista(self):
+   def listar(self, url):
       #Scanear url_juzgado y extraer los links
       res = requests.get(self.url_juzgado).text
       soup = BeautifulSoup(res)
