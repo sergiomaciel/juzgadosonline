@@ -11,8 +11,10 @@
    <h3>Activo: {{data.activo}} </h3>
    <h3>Ultima Actualización: {{data.ultima_fecha}} </h3>
    <h3>URL Demo: {{data.url}}</h3>
-   {% for despacho in despachos %}   
+   {% for despacho in despachos %}
+      <p>Url: {{despacho.url}}</p>  
       <p>Fecha: {{despacho.fecha}}</p>
+      <br>
    {% endfor %}
 </body>
 </html>

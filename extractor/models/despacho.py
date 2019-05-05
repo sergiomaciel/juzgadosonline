@@ -9,6 +9,8 @@ class Despacho(models.Model):
    url = models.CharField(max_length=100, null=True)
    plantilla = models.ForeignKey(Plantilla, null=True, on_delete=models.CASCADE)
    activo = models.BooleanField(default=False,null=False)
+   cargar_desde = models.DateField(blank=True, null=True)
+   cargar_hasta = models.DateField(blank=True, null=True)
    ultima_fecha = models.DateTimeField(blank=True, null=True)
 
    def __str__(self):

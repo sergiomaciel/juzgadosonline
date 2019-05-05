@@ -1,3 +1,3 @@
-from .buscarDespacho import BuscarDespachos
-from .extraerExpedientes import ExtraerExpedientes
+from .buscar import Buscar
+from .procesar import Procesar
 from .cargar import Cargar
