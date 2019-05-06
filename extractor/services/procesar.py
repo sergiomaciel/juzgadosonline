@@ -38,8 +38,26 @@ class Procesar():
          cadena = tupla[0].strip()
       
       resto = cadena.split("<>")
+      while "" in resto: resto.remove("")
+      return resto
+
+   def resto(self, cadena, partes):
+      resto = []
+      for parte in partes:
+         pos = cadena.find(parte)
+         if ((pos != -1) and (parte.strip() != "")):
+            R = cadena[0:pos]
+            resto.append(R.strip())
+            cadena = cadena[pos+len(parte):]
+      resto.append(cadena)
       while "" in resto: resto.remove("")   
-      return resto 
+      return resto
+   
+   def expresionesRegulares(self, cadena, partes):
+      resto = []
+      re.findall(partes[0]+partes[1])
+
+      return resto
 
       
    # Genera el resto_base de las caratulas
@@ -58,7 +76,8 @@ class Procesar():
       preProcesado = []
       for expediente in self.__contenido:
          
-         partesExpediente = self.__restoCaratula(expediente, restoBase)
+         # partesExpediente = self.__restoCaratula(expediente, restoBase)
+         partesExpediente = self.resto(expediente, restoBase)
          if (len(partesExpediente)>3):
             unidad ={
                   'numero':partesExpediente[0],

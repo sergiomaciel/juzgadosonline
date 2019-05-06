@@ -14,17 +14,18 @@ class Expediente(models.Model):
 
    fecha_creado = models.DateTimeField(default=timezone.now, null=True)
    fecha_publicado = models.DateTimeField(blank=True, null=True)   
-   autor = models.ForeignKey('auth.User', null=True,default=None, on_delete=models.SET_DEFAULT)
+   autor = models.ForeignKey('auth.User', default=None, on_delete=models.SET_DEFAULT)
 
-   subscriptores = models.ManyToManyField('auth.User',related_name = 'subscriptores')
+   subscriptores = models.ManyToManyField('auth.User', blank=True, related_name = 'subscriptores')
 
-   def publicar(self):
-      self.fecha_publicado = timezone.now()
-      self.save()
-   
+   def __str__(self):
+      return self.numero+" - "+str(self.juzgado)
+
+   '''
    def __str__(self):
       if ( (isinstance(self.demandado , (str))) ):
          caratula = self.numero +" - "+ self.actor +" C/ "+ self.demandado +" S/ "+ self.causa
       else:
          caratula = self.numero +" - "+ self.actor +" S/ "+ self.causa   
       return caratula
+   '''   

@@ -18,20 +18,25 @@ def list_despachos(request):
    for despacho in despachosPendientes:
       expedientes = Procesar(despacho.get('url'), desp.plantilla).expedientes      
       for e in expedientes:
-         e.update({'fecha':despacho.get('fecha')})
+         e.update({'fecha_publicado':despacho.get('fecha')})
          all_expedientes.append(e)
    
    return render(request, 'extractor/lista.html', {'expedientes': all_expedientes})
 
 
 def cargar(request):
-   despacho = Despacho.objects.get(pk=1)
-   url = despacho.url
-   ultimaFecha = despacho.ultima_fecha
-   despachosSinProcesar = Buscar(despacho).despachos
+   desp = Despacho.objects.get(pk=1)
+   despachosPendientes = Buscar(desp).despachos
+   all_expedientes = []
+   for despacho in despachosPendientes:
+      expedientes = Procesar(despacho.get('url'), desp.plantilla).expedientes      
+      for e in expedientes:
+         e.update({'fecha_publicado':despacho.get('fecha')})
+         all_expedientes.append(e)
+         cargarJuzgado = Cargar(desp.juzgado)
+         # cargarJuzgado.agregar(e)
+         cargarJuzgado.actualizarExpediente(e)
 
-   resultado = Cargar.existeExpediente(2,2)
-
-   return render(request, 'extractor/cargar.html', {'resultado':resultado})
+   return render(request, 'extractor/cargar.html', {'expedientes': all_expedientes})
 
 

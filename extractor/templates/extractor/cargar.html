@@ -8,8 +8,19 @@
 </head>
 <body>
 
-   <p>Existe Juzgado = 2,Numero Expediente = 2: Existe: {{resultado}}</p>
+   {% for espediente in expedientes %}
+   
+   <p>Numero: {{espediente.numero}}</p>
+   <p>Fecha: {{espediente.fecha_publicado}}</p>
+   <p>Actor: {{espediente.actor}}</p>
+   <p>Demandado: {{espediente.demandado}}</p>
+   <p>Causa: {{espediente.causa}}</p>
+   <article>{{espediente.contenido}}</article>
    <br>
+   <br>
+   <br>
+
+   {% endfor %}
 
 </body>
 </html>
