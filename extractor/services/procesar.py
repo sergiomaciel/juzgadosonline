@@ -76,8 +76,8 @@ class Procesar():
       preProcesado = []
       for expediente in self.__contenido:
          
-         # partesExpediente = self.__restoCaratula(expediente, restoBase)
-         partesExpediente = self.resto(expediente, restoBase)
+         partesExpediente = self.__restoCaratula(expediente, restoBase)
+         # partesExpediente = self.resto(expediente, restoBase)
          if (len(partesExpediente)>3):
             unidad ={
                   'numero':partesExpediente[0],

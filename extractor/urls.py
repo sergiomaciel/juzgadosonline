@@ -1,8 +1,10 @@
 from django.urls import path
-from . import views
+
+from .views import ListarDespachos
+from .views.funciones import buscar_despachos,cargar
 
 urlpatterns = [
-    path('extractor/listar/', views.list_despachos),
-    path('extractor/buscar/', views.buscar_despachos),
-    path('extractor/cargar/', views.cargar),
+    path('extractor/despachos/',ListarDespachos.as_view(), name='listar_despacho' ),
+    path('extractor/buscar/', buscar_despachos),
+    path('extractor/cargar/', cargar),
 ]

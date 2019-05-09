@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+</head>
+<body>
+      {% for despacho in object_list %}
+   
+      <p>Juzgado: {{despacho.juzgado}}</p>
+      <p>Fecha Desdes: {{despacho.cargar_desde}}</p>
+      <p>Fecha Hasta: {{despacho.cargar_hasta}}</p>
+      <p>Url: {{despacho.url}}</p>
+      <br>
+      <br>
+      <br>
+   
+      {% endfor %}
+   
+</body>
+</html>
