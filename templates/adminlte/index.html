@@ -3,45 +3,47 @@
 {% block content %}
 
 <section class="content">
-   <div class="row">
-     <div class="col-xs-12">
-       <div class="box">
-         <div class="box-header">
-           <h3 class="box-title">Novedades</h3>
-         </div>
-         <!-- /.box-header -->
-         <div class="box-body">
-           <table id="novedades" class="table table-bordered table-hover">
-             <thead>
-                  <tr>
-                     <th>Expediente</th>
-                     <th>Juzgado</th>
-                     <th>Fecha</th>
-                     <th>...</th>
-                  </tr>
-             </thead>
-             <tbody>
-                  {% for item in expediente %}
-                  <tr> 
-                      <td>{{ item.numero }}</td>
-                      <td>{{ item.juzgado }}</td>
-                      <td>{{ item.fecha_creado }}</td>
-                      <td><a href="{% url 'expediente' pk=item.pk %}"><i class="fa fa-eye"></i></a></td>
-                  </tr>
-                  {% endfor %}
-             </tbody>
-           </table>
-         </div>
-         <!-- /.box-body -->
-       </div>
-       <!-- /.box -->
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Novedades</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="novedades" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Expediente</th>
+                <th>Juzgado</th>
+                <th>Fecha</th>
+                <th>...</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in expediente %}
+              <tr>
+                <td>{{ item.numero }}</td>
+                <td>{{ item.juzgado }}</td>
+                <td>{{ item.fecha_creado }}</td>
+                <td>
+                  <a class="btn btn-primary" href="{% url 'expediente' pk=item.pk %}" role="button">
+                      <i class="fa fa-arrow-right"></i>
+                  </a>                  
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
 
-     </div>
-     <!-- /.col -->
-   </div>
-   <!-- /.row -->
- </section>
- 
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+
 {% endblock %}
-
-

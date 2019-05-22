@@ -2,125 +2,153 @@
 
 {% block content %}
 <div class="row">
-        <div class="col-md-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Detalles</h3>
+  <h1 class="text-center">
+    {{expediente.numero}} - {{expediente.actor}} C/ {{expediente.demandado}} S/ {{expediente.causa}}
+  </h1>
+</div>
+<br>
+<div class="row">
+  <section class="col-lg-8 connectedSortable">
+    <!-- Actualizaciones   -->
+    <div class="box box-primary">
+      <div class="box-header">
+        <h3 class="box-title">Actualizaciones</h3>
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>               
-              </div>
+        <div class="box-tools">
+          <div class="input-group input-group-sm" style="width: 150px;">
+            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="row">
-                <div class="col-md-8">
-                  <p class="text-center">
-                    <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
-                  </p>
-
-                  <div class="chart">
-                    <!-- Chart Canvas -->
-                    <canvas id="myChart" height="200"></canvas>
-                    <!-- <canvas id="chart1" height="200"></canvas>  -->
-                    <!-- <canvas id="ChartExpediente"></canvas> -->
-                  </div>
-                  <!-- /.chart-responsive -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-4">
-                  <p class="text-center">
-                    <strong>Goal Completion</strong>
-                  </p>
-
-                  <div class="progress-group">
-                    <span class="progress-text">Add Products to Cart</span>
-                    <span class="progress-number"><b>160</b>/200</span>
-
-                    <div class="progress sm">
-                      <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <!-- /.progress-group -->
-                  <div class="progress-group">
-                    <span class="progress-text">Complete Purchase</span>
-                    <span class="progress-number"><b>310</b>/400</span>
-
-                    <div class="progress sm">
-                      <div class="progress-bar progress-bar-red" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <!-- /.progress-group -->
-                  <div class="progress-group">
-                    <span class="progress-text">Visit Premium Page</span>
-                    <span class="progress-number"><b>480</b>/800</span>
-
-                    <div class="progress sm">
-                      <div class="progress-bar progress-bar-green" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <!-- /.progress-group -->
-                  <div class="progress-group">
-                    <span class="progress-text">Send Inquiries</span>
-                    <span class="progress-number"><b>250</b>/500</span>
-
-                    <div class="progress sm">
-                      <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <!-- /.progress-group -->
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-            <!-- ./box-body -->
-            <div class="box-footer">
-              <div class="row">
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                    <h5 class="description-header">$35,210.43</h5>
-                    <span class="description-text">TOTAL REVENUE</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                    <h5 class="description-header">$10,390.90</h5>
-                    <span class="description-text">TOTAL COST</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                    <h5 class="description-header">$24,813.53</h5>
-                    <span class="description-text">TOTAL PROFIT</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block">
-                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                    <h5 class="description-header">1200</h5>
-                    <span class="description-text">GOAL COMPLETIONS</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-              </div>
-              <!-- /.row -->
-            </div>
-            <!-- /.box-footer -->
           </div>
-          <!-- /.box -->
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
-{% endblock %}
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tr>
+            <th></th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+          </tr>
+          {% for item in actualizaciones %}
+          <tr>
+            <td>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                <i class="fa fa-eye"></i>
+              </button>
+            </td>
+            <td><span class="label label-success">{{ item.tipo }}</span></td>
+            <td>{{ item.fecha_publicado }}</td>
+          </tr>
+          <!-- Modal -->
+          <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">{{ item.fecha_publicado }}</h4>
+                </div>
+                <div class="modal-body">
+                  <p>{{ item.contenido }}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          {% endfor %}
+
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <td><span class="label label-success">Movimiento</span></td>
+    <td><span class="label label-primary">Proveído/Actuación</span></td>
+    <td><span class="label label-warning">Escritos/Cargos</span></td>
+  </section>
+
+  <section class="col-lg-4 connectedSortable">
+    <!-- Boton Suscribirse -->
+    <div>
+      <form action="{% url 'suscripcion' pk=expediente.pk %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+          <i class="fa fa-bell"></i> Suscribirse
+        </button>
+      </form>
+      <br>
+    </div>
+    <!-- Caducuidades -->
+    <div class="nav-tabs-custom">
+      <!-- Tabs within a box -->
+      <ul class="nav nav-tabs pull-right">
+        <li><a href="#90-dias" data-toggle="tab">90 Dias</a></li>
+        <li><a href="#60-dias" data-toggle="tab">60 Dias</a></li>
+        <li class="active"><a href="#30-dias" data-toggle="tab">30 Dias</a></li>
+        <li class="pull-left header">
+          <!-- <i class="fa fa-hourglass-half"></i> -->
+          Caducidad
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="chart tab-pane active" id="30-dias">
+          <div>
+            <div class="progress-group">
+              <span class="progress-text">Fecha</span>
+              <span class="progress-number">x Dias</span>
+              <div class="progress sm">
+                <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chart tab-pane" id="60-dias"></div>
+        <div class="chart tab-pane" id="90-dias"></div>
+      </div>
+    </div>
+    <!-- Grafico-->
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <i class="fa fa-clock"></i>
+        <h3 class="box-title">Actividad</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse">
+            <i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <canvas id="chartActividad" height="200"></canvas>
+      </div>
+    </div>
+    <!-- Detalles -->
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <i class="fa fa-clock"></i>
+        <h3 class="box-title">Detalles</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse">
+            <i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <p><strong>Juzgado: </strong>xxx</p>
+        <p><strong>Actor: </strong>xxx</p>
+        <p><strong>Demandado: </strong>xxx</p>
+        <p><strong>Causa: </strong>xxx</p>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}
