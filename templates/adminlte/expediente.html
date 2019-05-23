@@ -3,12 +3,13 @@
 {% block content %}
 <div class="row">
   <h1 class="text-center">
-    {{expediente.numero}} - {{expediente.actor}} C/ {{expediente.demandado}} S/ {{expediente.causa}}
+    {{expediente}}
+    <br>
   </h1>
 </div>
 <br>
 <div class="row">
-  <section class="col-lg-8 connectedSortable">
+  <section class="col-lg-8">
     <!-- Actualizaciones   -->
     <div class="box box-primary">
       <div class="box-header">
@@ -73,13 +74,19 @@
     <td><span class="label label-warning">Escritos/Cargos</span></td>
   </section>
 
-  <section class="col-lg-4 connectedSortable">
+  <section class="col-lg-4">
     <!-- Boton Suscribirse -->
     <div>
-      <form action="{% url 'suscripcion' pk=expediente.pk %}" method="post">
+      <form action="." method="post">
         {% csrf_token %}
         <button class="btn btn-primary btn-lg btn-block" type="submit">
-          <i class="fa fa-bell"></i> Suscribirse
+          
+          {% if suscripto %}
+            <i class="fa fa-bell-slash"></i> Baja
+          {% else %}
+            <i class="fa fa-bell"></i> Suscribirse
+          {% endif %}
+
         </button>
       </form>
       <br>
@@ -100,16 +107,41 @@
         <div class="chart tab-pane active" id="30-dias">
           <div>
             <div class="progress-group">
-              <span class="progress-text">Fecha</span>
-              <span class="progress-number">x Dias</span>
+              <span class="progress-text">{{caducidadad.30.fecha|date:"d M Y" }}</span>
+              {% if caducidadad.30.falta >= 0 %}
+                <span class="progress-number">Faltan: {{caducidadad.30.falta}} Días</span>
+              {% else %}
+                <span class="progress-number"><strong>Caducado!</strong></span>
+              {% endif %}
+              
               <div class="progress sm">
                 <div class="progress-bar progress-bar-red" style="width: 80%"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="chart tab-pane" id="60-dias"></div>
-        <div class="chart tab-pane" id="90-dias"></div>
+        <div class="chart tab-pane" id="60-dias">
+            <div>
+              <div class="progress-group">
+                <span class="progress-text">{{caducidadad.60.fecha|date:"d M Y" }}</span>
+                <span class="progress-number">Faltan: {{caducidadad.60.falta}} Días</span>
+                <div class="progress sm">
+                  <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="chart tab-pane" id="90-dias">
+            <div>
+              <div class="progress-group">
+                <span class="progress-text">{{caducidadad.90.fecha|date:"d M Y" }}</span>
+                <span class="progress-number">Faltan: {{caducidadad.90.falta}} Días</span>
+                <div class="progress sm">
+                  <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
     <!-- Grafico-->
@@ -143,10 +175,11 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <p><strong>Juzgado: </strong>xxx</p>
-        <p><strong>Actor: </strong>xxx</p>
-        <p><strong>Demandado: </strong>xxx</p>
-        <p><strong>Causa: </strong>xxx</p>
+        <p><strong>Juzgado: </strong>{{expediente.juzgado}}</p>
+        <p><strong>Numero: </strong>{{expediente.numero}}</p>
+        <p><strong>Actor: </strong>{{expediente.actor}}</p>
+        <p><strong>Demandado: </strong>{{expediente.demandado}}</p>
+        <p><strong>Causa: </strong>{{expediente.causa}}</p>
       </div>
     </div>
   </section>

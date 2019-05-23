@@ -16,9 +16,8 @@ class Actualizacion(models.Model):
    fecha_publicado = models.DateTimeField(blank=True, null=True)
    autor = models.ForeignKey('auth.User', default=None, on_delete=models.SET_DEFAULT)
 
-   def publicar(self):
-      self.fecha_publicado = timezone.now()
-      self.save()
+   class Meta:
+      ordering = ['-fecha_publicado']
 
    def __str__(self):
       return str(self.expediente) +" - "+ str(self.tipo) +" - "+ str(self.fecha_creado)[0:19]
