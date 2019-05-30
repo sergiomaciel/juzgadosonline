@@ -1,8 +1,0 @@
-#footer {
-    @include mdc-elevation(1);
-    width: 100%;
-    height: $footerHeight;
-    min-height: $footerHeight;
-    transition: left 300ms ease, right 300ms ease;
-    position: relative;
-}
