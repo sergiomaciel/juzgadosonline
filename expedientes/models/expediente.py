@@ -5,7 +5,7 @@ from juzgados.models import Juzgado
 
 class Expediente(models.Model):
    juzgado = models.ForeignKey(Juzgado, null=True, on_delete=models.CASCADE)
-   numero = models.CharField(max_length=20, unique=True)   
+   numero = models.CharField(max_length=20)   
    actor = models.CharField(max_length=100, null=True)
    demandado = models.CharField(max_length=100, default=None, blank=True)
    causa = models.CharField(max_length=200, null=True)

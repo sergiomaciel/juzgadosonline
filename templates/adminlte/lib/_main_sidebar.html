@@ -27,12 +27,12 @@
 
             {% block nav_links %}
                 <li>
-                    <a href="{% block logo_href %}/app{% endblock %}">
+                    <a href="{% url 'dashboard' %}">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{% url 'mis_expedientes' %}">
                         <i class="fa fa-briefcase"></i> <span>Mis Expedientes</span>
                     </a>
                 </li>

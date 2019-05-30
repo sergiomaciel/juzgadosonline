@@ -1,1 +1,2 @@
-from .expediente import serviceExpediente
+from .expediente import expedienteService
+from .misExpedientes import MisExpediente

@@ -1,0 +1,99 @@
+{% extends 'adminlte/base.html' %}
+
+{% block content %}
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Suscripciones</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="suscriptos" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Expediente</th>
+                <th>Juzgado</th>
+                <th>Fecha</th>
+                <th>...</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for expediente in suscriptos %}
+              <tr>
+                <td>{{ expediente.numero }}</td>
+                <td>{{ expediente.juzgado }}</td>
+                <td>{{ expediente.ultimaAct }} </td>
+                <td>
+                  <a class="btn btn-primary" href="{% url 'expediente' pk=expediente.id %}" role="button">
+                      <i class="fa fa-arrow-right"></i>
+                  </a>                  
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Agregados</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="creados" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Expediente</th>
+                <th>Juzgado</th>
+                <th>Fecha</th>
+                <th>
+                  <a class="btn btn-primary" href="{% url 'nuevo_expediente' %}" role="button">
+                    <i class="fa fa-plus"></i>
+                  </a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for expediente in creados %}
+              <tr>
+                <td>{{ expediente.numero }}</td>
+                <td>{{ expediente.juzgado }}</td>
+                <td>{{ expediente.fecha_creado }} </td>
+                <td>
+                  <a class="btn btn-primary" href="{% url 'expediente' pk=expediente.id %}" role="button">
+                      <i class="fa fa-arrow-right"></i>
+                  </a>
+                  <a class="btn btn-primary" href="{% url 'actualizar_expediente' pk=expediente.id %}" role="button">
+                    <i class="fa fa-edit"></i>
+                  </a>                   
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+{% endblock %}

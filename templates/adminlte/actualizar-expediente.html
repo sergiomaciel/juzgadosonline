@@ -1,0 +1,61 @@
+{% extends 'adminlte/base.html' %}
+
+{% block content %}
+<!-- Default box -->
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Nuevo Expediente</h3>
+
+    </div>
+    <div class="box-body">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Modificar" />
+        </form>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <a class="btn btn-primary" href="{% url 'mis_expedientes' %}" role="button">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+
+        <div class="box-tools pull-right">
+
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-borrar">
+                <i class="fa fa-trash"></i>
+            </button>
+            <!-- Modal Borrar -->
+            <div class="modal fade" id="modal-borrar">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Borrar Expediente {{ object.numero }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <strong>¿Estás seguro que deseas borrar el expediente</strong> <br>
+                            "{{ object }}"
+                            <strong>?</strong>
+                        </div>
+                        <div class="modal-footer">
+
+                            <form action="{% url 'borrar_expediente' pk=object.id %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-primary" type="submit">
+                                    Borrar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        </div>
+    </div>
+    <!-- /.box-footer-->
+</div>
+<!-- /.box -->
+{% endblock %}

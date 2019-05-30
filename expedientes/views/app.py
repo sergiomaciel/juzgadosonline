@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import View
 
-from expedientes.models import Expediente, Actualizacion
+from expedientes.services import MisExpediente
 
 class vistaApp(View):
    
    def get(self, request):
-      expedientes= Expediente.objects.all()
+      expedientes = MisExpediente(request.user)
       return render(request, "adminlte/index.html", {
-         'expediente':expedientes         
+         'suscriptos':expedientes.novedades(30)
          })

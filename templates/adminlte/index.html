@@ -21,17 +21,19 @@
               </tr>
             </thead>
             <tbody>
-              {% for item in expediente %}
-              <tr>
-                <td>{{ item.numero }}</td>
-                <td>{{ item.juzgado }}</td>
-                <td>{{ item.fecha_creado }}</td>
-                <td>
-                  <a class="btn btn-primary" href="{% url 'expediente' pk=item.pk %}" role="button">
-                      <i class="fa fa-arrow-right"></i>
-                  </a>                  
-                </td>
-              </tr>
+              {% for expediente in suscriptos %}
+                {% if expediente.DiasUltimaAct <= 100 %}               
+                  <tr>
+                    <td>{{ expediente.numero }}</td>
+                    <td>{{ expediente.juzgado }}</td>
+                    <td>{{ expediente.ultimaAct }}</td>
+                    <td>
+                      <a class="btn btn-primary" href="{% url 'expediente' pk=expediente.id %}" role="button">
+                          <i class="fa fa-arrow-right"></i>
+                      </a>                  
+                    </td>
+                  </tr>
+                {% endif %}
               {% endfor %}
             </tbody>
           </table>
