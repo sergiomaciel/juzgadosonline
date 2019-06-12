@@ -1,16 +1,23 @@
 from juzgados.models import Juzgado
-from juzgados.services import ciudadService
+from expedientes.models import Expediente
 
 class juzgadoService():
 
-   def get(self, nombre):
-      return Juzgado.objects.get(nombre=nombre)
+   def get(self, id):
+      return Juzgado.objects.get(pk=id)
 
 
-   def get_ciudad(self, nombre):
-      ciudad = ciudadService()
-      return Juzgado.objects.filter(ciudad=ciudad.get(nombre))   
+   def getExpedientes(self,id):
+      juzgado = self.get(id)
+      return Expediente.objects.filter(juzgado=juzgado)
 
 
-   def get_all(self):
+   def getAll(self):
       return Juzgado.objects.all()
+
+
+   def TotalExpedientes(self):
+      pass
+
+   def UltimaActualizacion(self):
+      pass   

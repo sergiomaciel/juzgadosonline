@@ -19,6 +19,7 @@ mysqlclient = "*"
 beautifulsoup4 = "==4.7.1"
 requests = "*"
 datetimerange = "*"
+django-select2 = "*"
 
 [requires]
 python_version = "3.7"

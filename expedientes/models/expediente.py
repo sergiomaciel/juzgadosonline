@@ -17,8 +17,15 @@ class Expediente(models.Model):
    subscriptores = models.ManyToManyField('auth.User', blank=True, related_name = 'subscriptores')
 
    def __str__(self):
+      caratula = self.numero
+      
+      if (self.actor != ''):
+         caratula = caratula +" - "+ self.actor
+
       if ( self.demandado != ''):
-         caratula = self.numero +" - "+ self.actor +" C/ "+ self.demandado +" S/ "+ self.causa
-      else:
-         caratula = self.numero +" - "+ self.actor +" S/ "+ self.causa   
+         caratula = caratula +" C/ "+ self.demandado
+      
+      if ( self.causa != ''):
+         caratula = caratula +" S/ "+ self.causa
+
       return caratula

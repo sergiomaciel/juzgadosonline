@@ -1,9 +1,16 @@
 from juzgados.models import Provincia
+from juzgados.models import Ciudad
 
 class provinciaService():
 
-   def get(self, nombre):
-      return Provincia.objects.get(nombre=nombre)
+   def get(self, id):
+      return Provincia.objects.get(pk=id)
 
-   def get_all(self):
+
+   def getCiudades(self, id):
+      provincia = self.get(id)
+      return Ciudad.objects.filter(provincia=provincia) 
+
+
+   def getAll(self):
       return Provincia.objects.all()

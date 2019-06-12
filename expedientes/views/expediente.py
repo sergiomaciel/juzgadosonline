@@ -6,20 +6,35 @@ from django.views.generic import View, DetailView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
 
-from expedientes.services import expedienteService
+from expedientes.services import expedienteDatoService
 
 class vistaExpediente(View):
 
-   # expediente = expedienteService(User.pk)
+   # expediente = expedienteDatoService(User.pk)
 
    def get(self, request, pk):
-      self.expediente = expedienteService(request.user.id)
-      contexto = self.expediente.get(pk)
+      E = expedienteDatoService(request.user, pk)
+      contexto = {
+         'expediente':E.expediente,
+         'ultimaActualizacion':E.ultimaActualizacion,
+         'suscripto':E.subcripto,
+         'actualizaciones': E.actualizaciones,
+         'fechas':E.fechas,
+         'caducidadad':E.caducidadad
+         }
       return render(request, "adminlte/expediente.html", contexto)
 
    def post(self, request, pk):
-      # self.expediente = expedienteService(request.user)
-      contexto = self.expediente.suscripcion()
+      E = expedienteDatoService(request.user, pk)
+      E.suscripcion()
+      contexto = {
+         'expediente':E.expediente,
+         'ultimaActualizacion':E.ultimaActualizacion,
+         'suscripto':E.subcripto,
+         'actualizaciones': E.actualizaciones,
+         'fechas':E.fechas,
+         'caducidadad':E.caducidadad
+         }
       return render(request, "adminlte/expediente.html", contexto) 
 
 
@@ -27,7 +42,7 @@ class vistaExpediente(View):
 # class vistaExpediente(TemplateView):
 
 #    template_name = "adminlte/expediente.html"
-#    expediente = expedienteService(request.user.id)
+#    expediente = expedienteDatoService(request.user.id)
 
 #    def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)
@@ -40,11 +55,11 @@ class vistaExpediente(View):
 #         return context        
 
    # def get(self, request, pk):
-   #    expediente = expedienteService(request.user.id)
+   #    expediente = expedienteDatoService(request.user.id)
    #    contexto = expediente.get(pk)
    #    return render(request, "adminlte/expediente.html", contexto)
 
    # def post(self, request, pk):
-   #    expediente = expedienteService(request.user.id)
+   #    expediente = expedienteDatoService(request.user.id)
    #    contexto = expediente.suscripcion()
    #    return render(request, "adminlte/expediente.html", contexto) 
