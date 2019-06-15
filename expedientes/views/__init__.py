@@ -5,5 +5,5 @@ from .misExpedientes import (
    actualizarExpediente,
    borrarExpediente
    )
-from .lista_expedientes import vistaListaExpedientes
+from .buscar import buscarExpediente
 from .app import vistaApp

@@ -4,10 +4,7 @@ from django.contrib.auth.models import User
 from juzgados.models import Juzgado, Ciudad, Provincia
 from expedientes.models import Expediente
 
-class SubsAgregarForm(forms.Form):
-
-#    provincia = forms.ModelChoiceField(queryset=Provincia.objects.all())
-#    ciudad = ModelMultipleChoiceField(queryset=Ciudad.objects.all())
+class buscarExpedienteForm(forms.Form):
 
    provincia = forms.ModelChoiceField(
         queryset=Provincia.objects.all(),
@@ -45,8 +42,3 @@ class SubsAgregarForm(forms.Form):
     )
    # juzgado = forms.ModelChoiceField(queryset=Juzgado.objects.all())
    numero = forms.CharField(initial='000/00')
-
-   # def __init__(self, *args, **kwargs):
-   #       super().__init__(*args, **kwargs)
-   #       self.fields['provincia'].initial = ' '
-         # self.fields['ciudad'].queryset = Ciudad.objects.all()

@@ -1,0 +1,1 @@
+from .juzgados import listaJuzgados

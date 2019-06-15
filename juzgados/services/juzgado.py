@@ -7,9 +7,12 @@ class juzgadoService():
       return Juzgado.objects.get(pk=id)
 
 
-   def getExpedientes(self,id):
-      juzgado = self.get(id)
-      return Expediente.objects.filter(juzgado=juzgado)
+   def getExpediente(self,idJuzgado, numero):
+      return Expediente.objects.filter(
+         juzgado__id=idJuzgado,
+         numero__contains=numero,
+         fecha_publicado__isnull=False
+         )
 
 
    def getAll(self):

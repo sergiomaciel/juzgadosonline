@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('select2/', include('django_select2.urls')),
     path('', include('expedientes.urls')),
+    path('', include('juzgados.urls')),
     path('', include('extractor.urls')),
 ]
