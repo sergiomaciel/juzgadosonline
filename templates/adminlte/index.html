@@ -11,32 +11,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table id="novedades" class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>Expediente</th>
-                <th>Juzgado</th>
-                <th>Fecha</th>
-                <th>...</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for expediente in suscriptos %}
-                {% if expediente.DiasUltimaAct <= 100 %}               
-                  <tr>
-                    <td>{{ expediente.numero }}</td>
-                    <td>{{ expediente.juzgado }}</td>
-                    <td>{{ expediente.ultimaAct }}</td>
-                    <td>
-                      <a class="btn btn-primary" href="{% url 'expediente' pk=expediente.id %}" role="button">
-                          <i class="fa fa-arrow-right"></i>
-                      </a>                  
-                    </td>
-                  </tr>
-                {% endif %}
-              {% endfor %}
-            </tbody>
-          </table>
+
         </div>
         <!-- /.box-body -->
       </div>

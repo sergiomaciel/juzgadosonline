@@ -2,13 +2,14 @@ from django import forms
 from django_select2.forms import Select2MultipleWidget, ModelSelect2Widget
 from django.contrib.auth.models import User
 from juzgados.models import Juzgado, Ciudad, Provincia
+from juzgados.services import juzgadoService, ciudadService, provinciaService
 from expedientes.models import Expediente
 
 class buscarExpedienteForm(forms.Form):
 
-   provincia = forms.ModelChoiceField(
+    provincia = forms.ModelChoiceField(
         queryset=Provincia.objects.all(),
-      #   empty_label="Seleccione una Provincia",
+        empty_label="Seleccione una Provincia",
         label='Provincia',
         widget=ModelSelect2Widget(
             model=Provincia,
@@ -18,7 +19,7 @@ class buscarExpedienteForm(forms.Form):
         ),
     )
 
-   ciudad = forms.ModelChoiceField(
+    ciudad = forms.ModelChoiceField(
         queryset=Ciudad.objects.all(),
         label="Ciudad",
         widget=ModelSelect2Widget(
@@ -30,7 +31,7 @@ class buscarExpedienteForm(forms.Form):
         )
    )
 
-   juzgado = forms.ModelChoiceField(
+    juzgado = forms.ModelChoiceField(
         queryset=Juzgado.objects.all(),
         label="Juzgado",
         widget=ModelSelect2Widget(
@@ -40,5 +41,21 @@ class buscarExpedienteForm(forms.Form):
             attrs={'data-placeholder': 'Seleccione un Juzgado', 'data-width': '100%'}
         )
     )
-   # juzgado = forms.ModelChoiceField(queryset=Juzgado.objects.all())
-   numero = forms.CharField(initial='000/00')
+
+    # juzgado = forms.ModelChoiceField(
+    #     queryset=Juzgado.objects.all(),
+    #     label="Juzgado",
+    #     widget=ModelSelect2Widget(
+    #         model=Juzgado,
+    #         search_fields=['nombre__icontains'],
+    #         dependent_fields={'ciudad': 'ciudad'},
+    #         attrs={'data-placeholder': 'Seleccione un Juzgado', 'data-width': '100%'}
+    #     )
+    # )
+#    juzgado = forms.ModelChoiceField(queryset=Juzgado.objects.all())
+    numero = forms.CharField(initial='000/00')
+
+#    def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields['provincia'].initial = ' '
+#         self.fields['ciudad'].queryset = Ciudad.objects.all()

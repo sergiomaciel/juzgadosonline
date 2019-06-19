@@ -20,6 +20,7 @@ beautifulsoup4 = "==4.7.1"
 requests = "*"
 datetimerange = "*"
 django-select2 = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"

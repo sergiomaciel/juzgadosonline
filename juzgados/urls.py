@@ -1,9 +1,12 @@
 from django.urls import path
 
 from .views import (
-    listaJuzgados
+    listaJuzgados,
+    homeJuzgado
     )
 
 urlpatterns = [
-    path('app/juzgados/',listaJuzgados.as_view(), name='juzgados' ),
+    path('juzgado/',homeJuzgado.as_view(), name='juzgado' ),
+    path('juzgados/lista/',listaJuzgados.as_view(), name='lista_juzgados' ),
+    
 ]

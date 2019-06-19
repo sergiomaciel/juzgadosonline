@@ -7,14 +7,12 @@
         {% block user_panel %}
         <div class="user-panel">
             <div class="pull-left image">
-            <br>
+                <img src="">
             </div>
             <div class="pull-left info">
                 <p>{% firstof request.user.get_full_name request.user.username %}</p>
-        
             </div>
         </div>
-        
         {% endblock %}
 
         {% block form %}{% endblock %}
@@ -42,7 +40,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'juzgados' %}">
+                    <a href="{% url 'juzgado' %}">
                         <i class="fa fa-bank"></i> <span>Juzgados</span>
                     </a>
                 </li>

@@ -1,0 +1,82 @@
+{% extends "adminlte/base.html" %}
+{% load i18n static %}
+
+{% block body_class %}login-page{% endblock %}
+
+{% block body %}
+    <div class="login-box">
+        {% block logo %}
+        <div class="login-logo">
+            {# Mirrors block names used in _main_header.html #}
+            <a href="{% block logo_href %}/{% endblock %}">{% block logo_text %}Juzgados Online{% endblock %}</a>
+        </div>
+        {% endblock %}
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+
+            {% block login_form %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <!-- {{ user_form.as_p }} -->
+                    {% if msg %}
+                        <p class="login-box-msg" style="color: red;">{{ msg }}</p>
+                    {% endif %}
+                    <div class="form-group has-feedback">
+                        <input type="text" name="username" class="form-control" placeholder="Username">
+                        <span class="form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <span class="form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="email" name="email" class="form-control" placeholder="Email">
+                        <span class="form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+                        <span class="form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" name="apellido" class="form-control" placeholder="Apellido">
+                        <span class="form-control-feedback"></span>
+                    </div>
+                    <!-- <div class="form-group has-feedback">
+                        <input type="file" name="avatar" class="form-control" placeholder="Imagen">
+                        <span class="form-control-feedback"></span>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="{% url 'user_login' %}">
+                                <i class="fa fa-sign-in"></i> <span>Login</span>
+                            </a>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">REGISTRARSE</button>
+                        </div>
+                    </div>
+                </form>
+            {% endblock login_form %}
+
+        </div>
+    </div>
+{% endblock %}
+
+
+<!-- {% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+
+        <h1>Register Here</h1>
+        <h3>Just fill out the form.</h3>
+<form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          {{ profile_form.as_p }}
+          <input type="submit" name="" value="Register">
+        </form>
+        
+
+    </div>
+  </div>
+{% endblock %} -->

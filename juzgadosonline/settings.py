@@ -71,6 +71,8 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/'
+
 WSGI_APPLICATION = 'juzgadosonline.wsgi.application'
 
 
@@ -80,7 +82,7 @@ WSGI_APPLICATION = 'juzgadosonline.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'juzgadosonline',
+            'NAME': 'juzgadosonline_demo',
             'USER': 'root',
             'PASSWORD': '',
             'HOST': 'localhost',
@@ -129,3 +131,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+MEDIA_URL = '/media/'

@@ -17,5 +17,5 @@ class buscarExpediente(View):
             juzgado = self.request.POST.get('juzgado')
             numero = self.request.POST.get('numero')
             J = juzgadoService()
-            expedientes = J.getExpediente(juzgado, numero)
+            expedientes = J.buscarExpediente(juzgado, numero)
       return render(request, "adminlte/buscar.html", {'form': form, 'expedientes':expedientes})   
