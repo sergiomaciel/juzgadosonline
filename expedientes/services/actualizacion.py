@@ -1,8 +1,48 @@
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError
+from django.contrib.auth.models import User
 from datetime import datetime, timedelta
-from expedientes.models import Actualizacion
+from expedientes.models import Expediente, Actualizacion
 
-class actualizacionSercice():
-   pass
+class actualizacionService():
+   
+   def __init__(self, usuario:User, expediente:Expediente):
+      self.__expediente = expediente
+      self.__usuario = usuario
+      self.msg = ''    
+   
+
+   def agregar(self,contenido, tipo, publicado=datetime.now()):      
+      A = Actualizacion(
+         expediente=self.__expediente,
+         tipo=tipo,
+         contenido=contenido,
+         fecha_publicado=publicado,
+         autor=self.__usuario
+      )
+      try:
+         A.save()
+      except IntegrityError:
+         self.msg = "ERROR AL AGREGAR LA ACTUALIZACION"
+      
+      return A
+
+   def actualizar(self,contenido, tipo, publicado=datetime.now()):
+      A = Actualizacion(
+         expediente=self.__expediente,
+         tipo=tipo,
+         contenido=contenido,
+         fecha_publicado=publicado,
+         autor=self.__usuarioRoot
+      )
+      try:
+         A.save(update_fields=['expediente','tipo','contenido','fecha_publicado'])
+      except IntegrityError:
+        self.msg = "ERROR AL ACTUALIZAR"
+
+      return A
+
+      
 
 class actualizacionesService():
 

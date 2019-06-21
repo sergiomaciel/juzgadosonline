@@ -1,8 +1,9 @@
 from django.contrib.auth.models import User
-from juzgados.models import Juzgado
+from juzgados.models import Juzgado, Delegado
 from expedientes.models import Expediente
 
 class juzgadoService():
+
 
    def buscarExpediente(self,idJuzgado, numero):
       return Expediente.objects.filter(
@@ -12,16 +13,16 @@ class juzgadoService():
          )
 
 
-   def getAllExpediente(self,idJuzgado):
+   def getAllExpediente(self, idJuzgado):
       return Expediente.objects.filter(
          juzgado__id=idJuzgado,
          fecha_publicado__isnull=False
          )
 
 
-   def getExpedienteAutor(self, idJuzgado, user:User):
+   def getExpedienteAutor(self, idJuzgado, idUser):
       return Expediente.objects.filter(
-         autor=user,
+         autor__id=idUser,
          juzgado__id=idJuzgado,
          fecha_publicado__isnull=False
          )

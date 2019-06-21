@@ -43,7 +43,7 @@ class MisExpediente():
    def preCargaCrear(self, idJuzgado, numero):
       juzgado = juzgadoService()
       E = Expediente(
-         juzgado=juzgado.get(idJuzgado),
+         juzgado=juzgado.getJuzgado(idJuzgado),
          numero=numero,
          actor='',
          demandado='',
@@ -59,7 +59,7 @@ class MisExpediente():
          juzgado = juzgadoService()         
          E = Expediente.objects.get(pk=idExpediente)
 
-         E.juzgado = juzgado.get(idJuzgado)
+         E.juzgado = juzgado.getJuzgado(idJuzgado)
          E.numero = numero
          E.save(update_fields=[
                'juzgado',

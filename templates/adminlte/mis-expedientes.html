@@ -62,7 +62,7 @@
                 <th>Juzgado</th>
                 <th>Fecha</th>
                 <th>
-                  <a class="btn btn-primary" href="{% url 'nuevo_expediente' %}" role="button">
+                  <a class="btn btn-primary" href="{% url 'pre_carga' %}" role="button">
                     <i class="fa fa-plus"></i>
                   </a>
                 </th>
@@ -78,7 +78,7 @@
                   <a class="btn btn-primary" href="{% url 'expediente' pk=expediente.id %}" role="button">
                       <i class="fa fa-arrow-right"></i>
                   </a>
-                  <a class="btn btn-primary" href="{% url 'actualizar_expediente' pk=expediente.id %}" role="button">
+                  <a class="btn btn-primary" href="{% url 'actualizar_pre_carga' pk=expediente.id %}" role="button">
                     <i class="fa fa-edit"></i>
                   </a>                   
                 </td>

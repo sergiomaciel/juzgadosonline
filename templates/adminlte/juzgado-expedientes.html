@@ -15,7 +15,6 @@
             <thead>
               <tr>
                 <th>Expediente</th>
-                <th>Juzgado</th>
                 <th>Fecha</th>
                 <th>...</th>
               </tr>
@@ -24,12 +23,11 @@
               {% for expediente in expedientes %}
               <tr>
                 <td>{{ expediente.numero }}</td>
-                <td>{{ expediente.juzgado }}</td>
-                <td>{{ expediente.ultimaAct }} </td>
+                <td>{{ expediente.fecha_publicado }} </td>
                 <td>
                   <a class="btn btn-primary" href="{% url 'expediente' pk=expediente.id %}" role="button">
-                      <i class="fa fa-arrow-right"></i>
-                  </a>                  
+                    <i class="fa fa-arrow-right"></i>
+                  </a>
                 </td>
               </tr>
               {% endfor %}
@@ -59,7 +57,6 @@
             <thead>
               <tr>
                 <th>Expediente</th>
-                <th>Juzgado</th>
                 <th>Fecha</th>
                 <th>
                   <a class="btn btn-primary" href="{% url 'nuevo_expediente' %}" role="button">
@@ -72,15 +69,21 @@
               {% for expediente in creados %}
               <tr>
                 <td>{{ expediente.numero }}</td>
-                <td>{{ expediente.juzgado }}</td>
-                <td>{{ expediente.fecha_creado }} </td>
+                <td>{{ expediente.fecha_publicado }} </td>
                 <td>
                   <a class="btn btn-primary" href="{% url 'expediente' pk=expediente.id %}" role="button">
-                      <i class="fa fa-arrow-right"></i>
+                    <i class="fa fa-arrow-right"></i>
                   </a>
                   <a class="btn btn-primary" href="{% url 'actualizar_expediente' pk=expediente.id %}" role="button">
                     <i class="fa fa-edit"></i>
-                  </a>                   
+                  </a>
+                  <a class="btn btn-primary" href="{% url 'actualizar_expediente' pk=expediente.id %}" role="button">
+                    <i class="fa fa-file"></i>
+                  </a>
+                  <button type="button" class="btn btn-default" data-toggle="modal"
+                    data-target="#modal-agregar_actualizacion">
+                    <i class="fa fa-trash"></i>
+                  </button>
                 </td>
               </tr>
               {% endfor %}
@@ -88,6 +91,35 @@
           </table>
         </div>
         <!-- /.box-body -->
+
+        <!-- Modal Borrar -->
+        <div class="modal fade" id="modal-agregar_actualizacion">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Borrar Expediente {{ expediente.numero }}</h4>
+              </div>
+              <div class="modal-body">
+                <strong>¿Estás seguro que deseas borrar el expediente</strong> <br>
+                "{{ expediente }}"
+                <strong>?</strong>
+              </div>
+              <div class="modal-footer">
+
+                <form action="{}" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-primary" type="submit">
+                    Borrar
+                  </button>
+                </form>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
       </div>
       <!-- /.box -->
 

@@ -1,6 +1,5 @@
 from django.db import models
 from datetime import datetime
-from .expediente import Expediente
 from django.contrib.auth.models import User
 
 
