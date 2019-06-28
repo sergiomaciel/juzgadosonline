@@ -17,9 +17,14 @@ from django.urls import path, include
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
+from django.shortcuts import render
+
+# def index(request):
+# 	return render(request, 'home/index.html')
 
 urlpatterns = [
     # path('avatar/', include('avatar.urls')),
+    # path('', index(), name='index'),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('select2/', include('django_select2.urls')),

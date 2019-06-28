@@ -21,7 +21,14 @@ class expedienteService():
       if (expBuscado == None):
          self.__agregarExpediente(numero, actor, demandado, causa)
       else:
-         self.msg = "EL EXPEDIENTE "+numero+" YA EXISTE"   
+         self.msg = "EL EXPEDIENTE "+numero+" YA FUE CREADO"
+         print("ENVIANDO NOTIFICACION DE CARGA DE EXPEDIENTE A ")
+         print(expBuscado.subscriptores.all())
+         print("******* Fin Notificaciones ******* ")
+         self.actualizar(numero, actor, demandado, causa)
+         #Agrega al Expediente el primer movimiento
+         A = actualizacionService(self.__usuario, expBuscado)
+         A.agregar("Cargado por el delegado "+self.__usuario.username , "M")
 
    #Verifica si exite el expediente
    def __existeExpediente(self, numero):      
@@ -54,11 +61,13 @@ class expedienteService():
       expediente = self.__existeExpediente(numero)
       if (expediente != None):
          try:
+            expediente.autor = self.__usuario
             expediente.actor = actor
             expediente.demandado = demandado
             expediente.causa = causa
             expediente.fecha_publicado = datetime.now()
             expediente.save(update_fields=[
+               'autor',
                'actor',
                'demandado',
                'causa',

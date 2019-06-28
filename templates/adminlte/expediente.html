@@ -16,23 +16,21 @@
         <h3 class="box-title">Actualizaciones</h3>
 
         <div class="box-tools">
-          <div class="input-group input-group-sm" style="width: 150px;">
-            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-            <div class="input-group-btn">
-              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-            </div>
-          </div>
+            <span class="label label-success">Movimiento</span>
+            <span class="label label-primary">Proveído/Actuación</span>
+            <span class="label label-warning">Escritos/Cargos</span>
         </div>
       </div>
       <!-- /.box-header -->
-      <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
-          <tr>
-            <th></th>
-            <th>Tipo</th>
-            <th>Fecha</th>
-          </tr>
+      <div class="box-body">
+        <table id="actualizaciones" class="table table-hover">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Tipo</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
           {% for item in actualizaciones %}
           <tr>
             <td>
@@ -79,9 +77,7 @@
       </div>
       <!-- /.box-body -->
     </div>
-    <td><span class="label label-success">Movimiento</span></td>
-    <td><span class="label label-primary">Proveído/Actuación</span></td>
-    <td><span class="label label-warning">Escritos/Cargos</span></td>
+
   </section>
 
   <section class="col-lg-4">

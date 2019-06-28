@@ -41,6 +41,20 @@
 </script>
 
 <script>
+        $(document).ready( function () {
+        $('#actualizaciones').DataTable({
+           'paging'      : true,
+           "pageLength": 10,
+           'lengthChange': true,
+           'searching'   : true,
+           'ordering'    : true,
+           'info'        : true,
+           'autoWidth'   : true
+         })
+       } );
+</script>
+
+<script>
     $(document).ready( function () {
     $('#creados').DataTable({
        'paging'      : true,
