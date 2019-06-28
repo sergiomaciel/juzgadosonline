@@ -7,4 +7,4 @@ from .misExpedientes import (
    )
 from .buscar import buscarExpediente
 from .app import vistaApp
-from .usuario import registro, login
+from .usuario import registroView, loginView

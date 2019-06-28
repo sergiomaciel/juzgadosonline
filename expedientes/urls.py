@@ -11,8 +11,8 @@ from .views import (
     actualizarExpediente,
     borrarExpediente,
     buscarExpediente,
-    registro,
-    login
+    registroView,
+    loginView
     )
 
 urlpatterns = [
@@ -24,7 +24,7 @@ urlpatterns = [
     path('app/expediente/buscar/',buscarExpediente.as_view(), name='buscar' ),
     path('app/expediente/<int:pk>/',vistaExpediente.as_view(), name='expediente' ),
 
-    path('usuario/registro/',registro.as_view(),name='user_registro'),
-    path('usuario/login/', LoginView.as_view(template_name='adminlte/usuario/login.html'), name="user_login"),
-    # path('usuario/login/',login.as_view(),name='user_login'),
+    path('app/registro/',registroView.as_view(),name='user_registro'),
+    # path('usuario/login/', LoginView.as_view(template_name='adminlte/usuario/login.html'), name="user_login"),
+    path('app/login/',loginView.as_view(),name='user_login'),
 ]

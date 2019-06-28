@@ -19,7 +19,7 @@ class crearActualizacion(View):
    
    def get(self, request, pk):
       expediente = Expediente.objects.get(pk=pk)
-      return render(request, "adminlte/juzgado-CRUD_actualizacion.html", {'expediente':expediente})
+      return render(request, "juzgado/juzgado-CRUD_actualizacion.html", {'expediente':expediente})
 
    def post(self, request, pk):
       form = actualizacionForm(request.POST)
@@ -31,7 +31,7 @@ class crearActualizacion(View):
          A.agregar(self.request.POST.get('contenido'), self.request.POST.get('tipo'))
          return redirect('CRUD_expediente', pk=expediente.pk)
          # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-      return render(request, "adminlte/juzgado-CRUD_actualizacion.html", {})      
+      return render(request, "juzgado/juzgado-CRUD_actualizacion.html", {})      
          
 
 class actualizarActualizacion(View):
@@ -39,7 +39,7 @@ class actualizarActualizacion(View):
    def get(self, request, id_Act, id_Exp):
       expediente = Expediente.objects.get(pk=id_Exp)
       actualizacion = Actualizacion.objects.get(pk=id_Act)
-      return render(request, "adminlte/juzgado-CRUD_actualizacion.html", {
+      return render(request, "juzgado/juzgado-CRUD_actualizacion.html", {
          'expediente': expediente,
          'actualizacion':actualizacion
          })
@@ -55,7 +55,7 @@ class actualizarActualizacion(View):
             self.request.POST.get('tipo')
             )
          return redirect('CRUD_expediente', pk=expediente.pk)
-      return render(request, "adminlte/juzgado-CRUD_actualizacion.html", {})
+      return render(request, "juzgado/juzgado-CRUD_actualizacion.html", {})
 
 
 class borrarActualizacion(DeleteView):

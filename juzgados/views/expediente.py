@@ -12,7 +12,7 @@ class crearExpediente(View):
    
    def get(self, request):
       
-      return render(request, "adminlte/juzgado-CRUD_expediente.html", {})
+      return render(request, "juzgado/juzgado-CRUD_expediente.html", {})
 
    def post(self, request):
       form = expedienteForm(request.POST)
@@ -28,7 +28,7 @@ class crearExpediente(View):
             expediente = expedienteService(delegado.usuario, delegado.juzgado)
             expediente.agregar(numero, actor, demandado, causa)
             return HttpResponseRedirect('/juzgado/')
-      return render(request, "adminlte/juzgado-CRUD_expediente.html", {})      
+      return render(request, "juzgado/juzgado-CRUD_expediente.html", {})      
          
 
 class actualizarExpediente(View):
@@ -38,7 +38,7 @@ class actualizarExpediente(View):
       A = actualizacionesService(pk)
       # actualizaciones = Actualizacion.objects.filter(expediente=expediente)
       
-      return render(request, "adminlte/juzgado-CRUD_expediente.html", {
+      return render(request, "juzgado/juzgado-CRUD_expediente.html", {
          'expediente': expediente,
          'actualizaciones':A.actualizaciones
          })
@@ -57,4 +57,4 @@ class actualizarExpediente(View):
             expediente = expedienteService(delegado.usuario, delegado.juzgado)
             expediente.actualizar(numero, actor, demandado, causa)
             return HttpResponseRedirect('/juzgado/')
-      return render(request, "adminlte/juzgado-CRUD_expediente.html", {})         
+      return render(request, "juzgado/juzgado-CRUD_expediente.html", {})         

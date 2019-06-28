@@ -7,11 +7,15 @@ from django.views.generic.edit import (
    UpdateView,
    DeleteView
 )
+from django.contrib.auth.mixins import LoginRequiredMixin
 from expedientes.forms import SubsAgregarForm
 from expedientes.services import MisExpediente
 from expedientes.models import Expediente
 
-class vistaMisExpedientes(View):
+
+class vistaMisExpedientes(LoginRequiredMixin, View):
+   login_url = 'user_login'
+   redirect_field_name = 'redirect_to'
    
    def get(self, request):
       expedientes = MisExpediente(request.user)
@@ -21,17 +25,9 @@ class vistaMisExpedientes(View):
          })
 
 
-# class crearExpediente(CreateView):
-#    model = Expediente
-#    success_url = reverse_lazy('mis_expedientes')
-#    # fields = ['juzgado', 'numero']
-#    fields = "__all__"
-#    template_name = 'adminlte/expedientePreCarga.html'
-#    # permission_required = 'people_and_property.can_add_email'
-
-# usar selec2
-
-class crearExpediente(View):
+class crearExpediente(LoginRequiredMixin, View):
+   login_url = 'user_login'
+   redirect_field_name = 'redirect_to'
    
    def get(self, request):
       form = SubsAgregarForm()
@@ -49,8 +45,10 @@ class crearExpediente(View):
       return render(request, "adminlte/expedientePreCarga.html", {'form': form})      
          
 
-class actualizarExpediente(View):
-   
+class actualizarExpediente(LoginRequiredMixin, View):
+   login_url = 'user_login'
+   redirect_field_name = 'redirect_to'
+
    def get(self, request, pk):
       expedientes = MisExpediente(request.user)
       expediente = expedientes.getExpediente(pk)
@@ -81,23 +79,11 @@ class actualizarExpediente(View):
          'form': form,
          'expediente': expediente
          })
-# class actualizarExpediente(UpdateView):
-#    model = Expediente
-#    form_class = SubsAgregarForm
-#    success_url = reverse_lazy('mis_expedientes')
-#    # fields = ['juzgado', 'numero']
-#    # fields = "__all__"
-#    # template_name_suffix = '_update_form'
-#    template_name = 'adminlte/expedientePreCarga.html'
- 
-#    def get_object(self, queryset=None):
-#       obj, created = None
-#       # obj, created = MyModel.objects.get_or_create(col_1=self.kwargs['value_1'], col_2=self.kwargs['value_2'])
-
-#       return obj
 
 
-class borrarExpediente(DeleteView):
+class borrarExpediente(LoginRequiredMixin, DeleteView):
+   login_url = 'user_login'
+   redirect_field_name = 'redirect_to'
    model = Expediente
    success_url = reverse_lazy('mis_expedientes')
    template_name = 'adminlte/borrar-expediente.html'

@@ -28,8 +28,8 @@ def cargar(request):
          e.update({'fecha_publicado':despacho.get('fecha')})
          all_expedientes.append(e)
          cargarJuzgado = Cargar(desp.juzgado)
-         # cargarJuzgado.agregar(e)
-         cargarJuzgado.actualizarExpediente(e)
+         cargarJuzgado.agregar(e)
+         # cargarJuzgado.actualizarExpediente(e)
 
    return render(request, 'extractor/cargar.html', {'expedientes': all_expedientes})
 

@@ -12,6 +12,9 @@ class vistaApp(LoginRequiredMixin, View):
    
    def get(self, request):
       expedientes = MisExpediente(request.user)
+      print(expedientes.novedades(30))
+      for exp in expedientes.novedades(30):
+         print(exp.get('juzgado'))
       return render(request, "adminlte/index.html", {
          'suscriptos':expedientes.novedades(30)
          })

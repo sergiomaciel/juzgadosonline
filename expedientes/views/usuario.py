@@ -1,32 +1,40 @@
 from django.shortcuts import render
 from expedientes.forms import AbogadoForm, UserForm
-from django.views.generic import View
+from django.views.generic import View, FormView
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect, HttpResponse
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
-class login(View):
+
+class loginView(View):
    
    def post(self, request):
+      form = AuthenticationForm(data=request.POST)
       username = request.POST.get('username')
       password = request.POST.get('password')
-      user = authenticate(username=username, password=password)
-      if user:
-         if user.is_active:
-            login(request, user)
-            return HttpResponseRedirect('dashboard')
-         else:
-            return HttpResponse("Your account was inactive.")
+      if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                print(user)
+                login(self.request, user)
+                return HttpResponseRedirect('/app/')
+            else:
+                print('User not found')
       else:
+            # If there were errors, we render the form with these
+            # errors
             return render(request, 'adminlte/usuario/login.html', {'msg':'Credenciales Incorrectas'})
        
    
    def get(self, request):
       return render(request, 'adminlte/usuario/login.html', {})
 
-class registro(View):
+class registroView(View):
    
    def post(self, request):    
       user_form = UserForm(data=request.POST)
@@ -44,7 +52,7 @@ class registro(View):
          # #    perfil.avatar = request.FILES['avatar']
          # perfil.save()
 
-         return HttpResponseRedirect('usuario/login/')
+         return HttpResponseRedirect('/app/')
       else:
          user_form = UserForm()
          return render(request,'adminlte/usuario/register.html',{'user_form':user_form})

@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from expedientes.forms import buscarExpedienteForm
 from expedientes.models import Expediente
 from juzgados.services import juzgadoService
 
-class buscarExpediente(View):
+class buscarExpediente(LoginRequiredMixin, View):
+   login_url = 'user_login'
+   redirect_field_name = 'redirect_to'
    
    def get(self, request):
       form = buscarExpedienteForm()

@@ -7,7 +7,8 @@ from .views import (
     actualizarExpediente,
     crearActualizacion,
     actualizarActualizacion,
-    borrarActualizacion
+    borrarActualizacion,
+    loginView
     )
 
 urlpatterns = [
@@ -20,4 +21,6 @@ urlpatterns = [
     path('juzgado/nueva-actualizacion/<int:pk>/',crearActualizacion.as_view(), name='nueva_actualizacion' ),
     path('juzgado/actualizacion/<int:id_Act>/<int:id_Exp>/',actualizarActualizacion.as_view(), name='actualizacion' ),
     path('juzgado/actualizacion/borrar/<int:pk>/',borrarActualizacion.as_view(), name='borrar_actualizacion' ),
+    # Usuario
+    path('juzgado/login/',loginView.as_view(),name='juzgado_login'),
 ]
