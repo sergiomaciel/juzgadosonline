@@ -75,9 +75,6 @@
                 <td>{{ expediente.juzgado }}</td>
                 <td>{{ expediente.fecha_creado }} </td>
                 <td>
-                  <a class="btn btn-primary" href="{% url 'expediente' pk=expediente.id %}" role="button">
-                      <i class="fa fa-arrow-right"></i>
-                  </a>
                   <a class="btn btn-primary" href="{% url 'actualizar_pre_carga' pk=expediente.id %}" role="button">
                     <i class="fa fa-edit"></i>
                   </a>                   

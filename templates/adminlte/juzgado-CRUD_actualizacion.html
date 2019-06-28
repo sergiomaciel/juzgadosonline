@@ -1,0 +1,106 @@
+{% extends 'adminlte/base.html' %}
+
+{% block content %}
+<!-- Default box -->
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title">Actualizacion del Expediente: {{expediente.numero}} </h3>
+  </div>
+  <div class="box-body">
+
+    <form method="POST" action=".">
+      {% csrf_token %}
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label class="col-sm-2 col-form-label">Tipo</label>
+          <div class=" col-sm-10">
+            <select required name="tipo" class="browser-default custom-select">
+              {% if actualizacion.tipo == 'M' %}
+              <option value="M" selected="selected">Movimiento</option>
+              <option value="P">Proveído/Actuación</option>
+              <option value="E">Escritos/Cargos</option>
+              {% endif %}
+              {% if actualizacion.tipo == 'P' %}
+              <option value="M">Movimiento</option>
+              <option value="P" selected="selected">Proveído/Actuación</option>
+              <option value="E">Escritos/Cargos</option>
+              {% endif %}  
+              {% if actualizacion.tipo == 'E' %}
+              <option value="M">Movimiento</option>
+              <option value="P">Proveído/Actuación</option>
+              <option value="E" selected="selected">Escritos/Cargos</option>
+              {% endif %}                
+              <option value="M">Movimiento</option>
+              <option value="P">Proveído/Actuación</option>
+              <option value="E">Escritos/Cargos</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-md-12">
+          <label class="col-sm-2 col-form-label">Contenido</label>
+          <div class="col-sm-10">
+            {% if actualizacion %}
+            <textarea required class="form-control" rows="5" name="contenido">{{actualizacion.contenido}}</textarea>
+            {% else %}
+            <textarea required class="form-control" rows="5" name="contenido"></textarea>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            {% if actualizacion %}
+            <button type="submit" class="btn btn-primary ">Guardar</button>
+            {% else %}
+            <button type="submit" class="btn btn-primary ">Publicar</button>
+            {% endif %}
+          </div>
+        </div>
+    </form>
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer">
+    <a class="btn btn-primary" href="{% url 'CRUD_expediente' pk=expediente.pk %}" role="button">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+
+    {% if actualizacion %}
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-borrar">
+        <i class="fa fa-trash"></i>
+      </button>
+      <!-- Modal Borrar -->
+      <div class="modal fade" id="modal-borrar">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Borrar Actualizacion del Expediente {{ expediente.numero }}</h4>
+            </div>
+            <div class="modal-body">
+              <strong>¿Estás seguro que deseas borrar la actualizacion ?</strong>
+            </div>
+            <div class="modal-footer">
+
+              <form action="{% url 'borrar_actualizacion' pk=actualizacion.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-primary" type="submit">
+                  Borrar
+                </button>
+              </form>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <!-- /.box-footer-->
+</div>
+<!-- /.box -->
+
+{% endblock %}

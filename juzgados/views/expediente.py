@@ -4,8 +4,8 @@ from django.views.generic import View
 
 from juzgados.forms import expedienteForm
 from juzgados.services import juzgadoService
-from expedientes.services import expedienteService
-from expedientes.models import Expediente
+from expedientes.services import expedienteService, actualizacionesService
+from expedientes.models import Expediente, Actualizacion
 from juzgados.models import Delegado
 
 class crearExpediente(View):
@@ -35,16 +35,12 @@ class actualizarExpediente(View):
    
    def get(self, request, pk):
       expediente = Expediente.objects.get(pk=pk)
-      # form = expedienteForm(
-      #    initial={
-      #       "numero": expediente.numero,
-      #       "actor": expediente.actor,
-      #       "demandado": expediente.demandado,
-      #       "causa": expediente.causa,
-      #       })
+      A = actualizacionesService(pk)
+      # actualizaciones = Actualizacion.objects.filter(expediente=expediente)
       
       return render(request, "adminlte/juzgado-CRUD_expediente.html", {
-         'expediente': expediente
+         'expediente': expediente,
+         'actualizaciones':A.actualizaciones
          })
 
    def post(self, request, pk):

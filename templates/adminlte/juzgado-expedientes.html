@@ -71,19 +71,10 @@
                 <td>{{ expediente.numero }}</td>
                 <td>{{ expediente.fecha_publicado }} </td>
                 <td>
-                  <a class="btn btn-primary" href="{% url 'expediente' pk=expediente.id %}" role="button">
-                    <i class="fa fa-arrow-right"></i>
-                  </a>
-                  <a class="btn btn-primary" href="{% url 'actualizar_expediente' pk=expediente.id %}" role="button">
+                  <a class="btn btn-primary" href="{% url 'CRUD_expediente' pk=expediente.id %}" role="button">
                     <i class="fa fa-edit"></i>
                   </a>
-                  <a class="btn btn-primary" href="{% url 'actualizar_expediente' pk=expediente.id %}" role="button">
-                    <i class="fa fa-file"></i>
-                  </a>
-                  <button type="button" class="btn btn-default" data-toggle="modal"
-                    data-target="#modal-agregar_actualizacion">
-                    <i class="fa fa-trash"></i>
-                  </button>
+                  
                 </td>
               </tr>
               {% endfor %}

@@ -3,6 +3,11 @@
 {% block content %}
 
 <section class="content">
+  <div class="row" >      
+      <div id="container" class="col-xs-12">
+          <canvas id="dashboard" height="50"></canvas>
+        </div>
+  </div>
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
@@ -11,7 +16,30 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-
+          <table id="suscriptos" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Expediente</th>
+                <th>Juzgado</th>
+                <th>Fecha</th>
+                <th>...</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for expediente in suscriptos %}
+              <tr>
+                <td>{{ expediente.numero }}</td>
+                <td>{{ expediente.juzgado }}</td>
+                <td>{{ expediente.ultimaAct }} </td>
+                <td>
+                  <a class="btn btn-primary" href="{% url 'expediente' pk=expediente.id %}" role="button">
+                      <i class="fa fa-arrow-right"></i>
+                  </a>                  
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
         <!-- /.box-body -->
       </div>
@@ -22,5 +50,37 @@
   </div>
   <!-- /.row -->
 </section>
+
+<script>
+    var ctx = document.getElementById('dashboard');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label:'Juzgados',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
 
 {% endblock %}

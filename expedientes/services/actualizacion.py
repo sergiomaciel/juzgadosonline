@@ -27,20 +27,17 @@ class actualizacionService():
       
       return A
 
-   def actualizar(self,contenido, tipo, publicado=datetime.now()):
-      A = Actualizacion(
-         expediente=self.__expediente,
-         tipo=tipo,
-         contenido=contenido,
-         fecha_publicado=publicado,
-         autor=self.__usuarioRoot
-      )
+   def actualizar(self, id, contenido, tipo, publicado=datetime.now()):
+      actualizacion = Actualizacion.objects.get(pk=id)
+      actualizacion.contenido = contenido
+      actualizacion.tipo = tipo
+      actualizacion.fecha_publicado = publicado
       try:
-         A.save(update_fields=['expediente','tipo','contenido','fecha_publicado'])
+         actualizacion.save(update_fields=['tipo','contenido','fecha_publicado'])
       except IntegrityError:
         self.msg = "ERROR AL ACTUALIZAR"
 
-      return A
+      return actualizacion
 
       
 

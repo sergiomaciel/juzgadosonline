@@ -1,6 +1,6 @@
 from django import forms
 
-from expedientes.models import Expediente
+from expedientes.models import Actualizacion
 
 class expedienteForm(forms.Form):
 
@@ -8,3 +8,4 @@ class expedienteForm(forms.Form):
    actor = forms.CharField(required=False)
    demanadado = forms.CharField(required=False)
    causa = forms.CharField(required=False)
+

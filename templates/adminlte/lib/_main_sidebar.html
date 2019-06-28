@@ -24,27 +24,37 @@
             <li class="header">{% block nav_heading %}MAIN NAVIGATION{% endblock %}</li>
 
             {% block nav_links %}
-                <li>
-                    <a href="{% url 'dashboard' %}">
-                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'mis_expedientes' %}">
-                        <i class="fa fa-briefcase"></i> <span>Mis Expedientes</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'buscar' %}">
-                        <i class="fa fa-search"></i> <span>Buscar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'juzgado' %}">
-                        <i class="fa fa-bank"></i> <span>Juzgados</span>
-                    </a>
-                </li>
-                <!-- <li class="treeview">
+            <li>
+                <a href="{% url 'dashboard' %}">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'mis_expedientes' %}">
+                    <i class="fa fa-briefcase"></i> <span>Mis Expedientes</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'buscar' %}">
+                    <i class="fa fa-search"></i> <span>Buscar</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'juzgado' %}">
+                    <i class="fa fa-bank"></i> <span>Juzgados</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'juzgado' %}">
+                    <i class="fa fa-bank"></i> <span>Expedientes</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'juzgado' %}">
+                    <i class="fa fa-bank"></i> <span>Actualizaciones</span>
+                </a>
+            </li>
+            <!-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-group"></i> <span>Sub menu</span>
                         <span class="pull-right-container">
